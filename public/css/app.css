@@ -40,3 +40,7 @@ section.hero {
 .btn-primary:hover {
   background: #b23301;
 }
+
+section.cart {
+  background: #F8F8F8;
+}
