@@ -1,4 +1,5 @@
 const homeController = require('../app/http/controllers/homeController')
+const authController = require('../app/http/controllers/authController')
 
 function initRoutes(app) {
     
@@ -8,9 +9,7 @@ function initRoutes(app) {
         res.render('customers/cart');
     })
     
-    app.get('/login', (req, res) => {
-        res.render('auth/login');
-    })
+    app.get('/login', authController().login)
     
     app.get('/register', (req, res) => {
         res.render('auth/register');
