@@ -11,9 +11,7 @@ function initRoutes(app) {
     
     app.get('/login', authController().login)
     
-    app.get('/register', (req, res) => {
-        res.render('auth/register');
-    })
+    app.get('/register', authController().register)
 }
 
 module.exports = initRoutes
