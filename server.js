@@ -4,6 +4,17 @@ const ejs = require('ejs')
 const expressLayout = require('express-ejs-layouts')
 const app = express()
 const PORT = process.env.PORT || 5000
+const mongoose = require('mongoose')
+
+// DB Config
+const url = 'mongodb://localhost/nombomordertrackerapi';
+mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
+const connection = mongoose.connection;
+connection.once('open', () => {
+    console.log('DB Connected!');
+}).on('error', (err) => {
+    console.log(err);
+});
 
 // Assets Config
 app.use(express.static('public'))
