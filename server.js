@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express')
 const path = require('path')
 const ejs = require('ejs')
@@ -5,6 +6,9 @@ const expressLayout = require('express-ejs-layouts')
 const app = express()
 const PORT = process.env.PORT || 5000
 const mongoose = require('mongoose')
+const session = require('express-session')
+const flash = require('express-flash')
+const MongoDbStore = require('connect-mongo')(session)
 
 // DB Config
 const url = 'mongodb://localhost/nombomordertrackerapi';
@@ -15,6 +19,22 @@ connection.once('open', () => {
 }).on('error', (err) => {
     console.log(err);
 });
+
+// Session Store
+let mongoStore = new MongoDbStore({
+    mongooseConnection: connection,
+    collection: 'sessions'
+})
+
+// Session Config
+app.use(session({
+    secret: process.env.COOKIE_SECRET,
+    resave: false,
+    store: mongoStore,
+    saveUninitialized: false,
+    cookie: { maxAge: 1000 * 60 * 60 * 24 }
+}))
+app.use(flash())
 
 // Assets Config
 app.use(express.static('public'))
