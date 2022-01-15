@@ -38,6 +38,7 @@ app.use(flash())
 
 // Assets Config
 app.use(express.static('public'))
+app.use(express.json())
 
 // Setup Template Engine
 app.use(expressLayout)
