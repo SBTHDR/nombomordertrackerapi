@@ -23,7 +23,12 @@
                     <li><a href="#">Offers</a></li>
                     <li><a href="/register">Register</a></li>
                     <li><a href="/login">Login</a></li>
-                    <li><a href="/cart" class="inline-block px-4 py-2 rounded-full"><img src="/img/cart.png" alt="cart"></a></li>
+                    <li>
+                        <a href="/cart" class="inline-block px-4 py-2 rounded-full flex items-center gap-2">
+                            <span id="cartCounter" class="text-white font-bold"><%= session.cart ? session.cart.totalQty : '' %></span>
+                            <img src="/img/cart.png" alt="cart">
+                        </a>
+                    </li>
                 </ul>
             </div>
         </nav>

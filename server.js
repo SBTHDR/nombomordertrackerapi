@@ -40,6 +40,12 @@ app.use(flash())
 app.use(express.static('public'))
 app.use(express.json())
 
+// Global Session Middleware
+app.use((req, res, next) => {
+    res.locals.session = req.session
+    next()
+})
+
 // Setup Template Engine
 app.use(expressLayout)
 app.set('views', path.join(__dirname, './resources/views'))
